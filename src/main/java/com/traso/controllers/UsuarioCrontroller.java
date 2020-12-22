@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.traso.model.Usuario;
 import com.traso.serviceimpl.UsuarioServiceImpl;
 
 @RestController
+@RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioCrontroller {
 	// criar o a implementacao de class
@@ -23,7 +25,7 @@ public class UsuarioCrontroller {
 	private UsuarioServiceImpl usuarioServiceImpl;
 	
 	//chamar o metodo para salvar um novo usuario
-	@PostMapping(value = "saveUsuario")
+	@PostMapping
 	public Usuario saveUsuario(@RequestBody Usuario usuario) {
 		System.out.println("usuario pronto");
 		usuarioServiceImpl.saveUsuario(usuario);
@@ -31,12 +33,12 @@ public class UsuarioCrontroller {
 			
 	}
 	
-	@GetMapping(value = "getAllUsuarios")
+	@GetMapping
 	public List<Usuario> findAllUsuario(){
 		return usuarioServiceImpl.findAllUsuarios();
 	}
-	@PutMapping("upadateUsuario")
-	public Usuario updateUsuario(@RequestBody Usuario usuario) {
+	@PutMapping("/{id}")
+	public Usuario updateUsuario(@RequestBody Usuario usuario, int id) {
 		return usuarioServiceImpl.updateUsuario(usuario);
 	}
 	

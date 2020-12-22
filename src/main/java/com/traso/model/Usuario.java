@@ -6,8 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+
+@Data
 @Entity
-@Table(name = "DB_CONTACTOS", catalog = "DB_CONTACTOS")
+@Table(name = "usuarios")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
